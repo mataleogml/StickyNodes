@@ -1,0 +1,1 @@
+# sticky-nodes-photo-importer
