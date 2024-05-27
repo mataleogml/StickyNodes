@@ -1,8 +1,5 @@
 # Sticky Nodes Photo Importer Workflow
 
-Certainly! Below is a sample README file for your GitHub repository that outlines the purpose, usage, and setup of the AutoHotkey script.
-
-
 This AutoHotkey (AHK) script automates the process of importing images from a USB-connected camera, sorting them by date, and importing them into Adobe Lightroom. 
 
 ## Features
