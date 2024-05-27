@@ -4,23 +4,22 @@ SetBatchLines, -1
 SetTitleMatchMode, 2
 SendMode, Input
 
-; Change these paths to your needs
 ImportFolder := "C:\CameraImports"
-LightroomPath := "C:\Program Files\Adobe\Adobe Lightroom CC\lightroom.exe"
 
-; Function to handle the device change
 OnDeviceChange(wParam, lParam) {
     static DBT_DEVICEARRIVAL := 0x8000
     if (wParam = DBT_DEVICEARRIVAL) {
         DriveLetter := GetDriveLetterFromGUID()
         if (DriveLetter) {
+            MsgBox, Camera connected. Drive letter: %DriveLetter%
             ImportImages(DriveLetter)
+        } else {
+            MsgBox, No removable drive detected.
         }
     }
     return true
 }
 
-; Function to get drive letter from GUID
 GetDriveLetterFromGUID() {
     DriveList := ""
     DriveGet, List, List
@@ -28,37 +27,38 @@ GetDriveLetterFromGUID() {
     {
         DriveGet, Type, Type, %A_LoopField%:
         if (Type = "Removable") {
-            DriveList .= A_LoopField ":"
+            DriveList := A_LoopField ":"
         }
     }
     return DriveList
 }
 
-; Function to import images
 ImportImages(DriveLetter) {
-    ; Create a new folder named with current date and time
     FormatTime, FolderName,, yyyyMMdd_HHmmss
-    TargetFolder := ImportFolder "\" FolderName
+    TargetFolder := "C:\CameraImports\" . FolderName
     FileCreateDir, %TargetFolder%
+    
+    MsgBox, Importing images from camera... Please wait.
 
-    ; Copy images from the camera to the target folder
+    ImageCount := 0
+
     Loop, Files, %DriveLetter%\*.jpg, R
     {
         FileCopy, %A_LoopFileFullPath%, %TargetFolder%
+        ImageCount++
     }
 
-    ; Sort images by date
     Loop, Files, %TargetFolder%\*.jpg
     {
         FileGetTime, FileTime, %A_LoopFileFullPath%, C
         FileMove, %A_LoopFileFullPath%, %TargetFolder%\%FileTime%_%A_LoopFileName%
     }
 
-    ; Open Lightroom and import the images
-    Run, %LightroomPath% "%TargetFolder%"
+    MsgBox, %ImageCount% images imported from the camera.
+
+    Run, "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe Lightroom.lnk"
 }
 
-; Register for device change notifications
 OnMessage(0x219, "OnDeviceChange")
 
 MsgBox, Script is running. Plug in your camera to import images.
