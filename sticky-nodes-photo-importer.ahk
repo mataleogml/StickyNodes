@@ -34,12 +34,9 @@ GetDriveLetterFromGUID() {
         FormatTime, FolderName,, yyyyMMdd_HHmmss
         TargetFolder := "C:\CameraImports\"
         FileCreateDir, %TargetFolder%
-        ImageCount := 0
-
         Loop, Files, %DriveLetter%\*.jpg, R
         {
             FileCopy, %A_LoopFileFullPath%, %TargetFolder%
-            ImageCount++
         }
     }
 
