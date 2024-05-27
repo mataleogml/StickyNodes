@@ -11,27 +11,27 @@ This AutoHotkey (AHK) script automates the process of importing images from a US
 
 ## Requirements
 
-- [AutoHotkey](https://www.autohotkey.com/) installed on your Windows PC.
+- [AutoHotkey 1.1](https://www.autohotkey.com/) installed on your Windows PC.
 - Adobe Lightroom installed.
 
 ## Setup
 
 1. **Clone the Repository**:
    ```sh
-   git clone https://github.com/yourusername/Camera-Image-Importer.git
-   cd Camera-Image-Importer
+   git clone https://github.com/mataleogml/sticky-nodes-photo-importer.git
+   cd sticky-nodes-photo-importer
    ```
 
 2. **Edit the Script**:
-   - Open `import_images.ahk` in a text editor.
+   - Open `sticky-nodes-photo-importer.ahk` in a text editor.
    - Update the following paths as needed:
      ```ahk
      ImportFolder := "C:\CameraImports"
-     LightroomPath := "C:\Program Files\Adobe\Adobe Lightroom\lightroom.exe"
+     LightroomPath := "C:\Program Files\Adobe\Adobe Lightroom CC\lightroom.exe"
      ```
 
 3. **Run the Script**:
-   - Double-click `import_images.ahk` to start the script.
+   - Double-click `sticky-nodes-photo-importer.ahk` to start the script.
    - A message box will appear indicating that the script is running.
 
 ## Usage
