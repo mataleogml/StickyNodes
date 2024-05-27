@@ -4,6 +4,8 @@ SetBatchLines, -1
 SetTitleMatchMode, 2
 SendMode, Input
 
+;Version 1.1 (Duplicate Fix)
+
 ImportFolder := "C:\CameraImports"
 
 OnDeviceChange(wParam, lParam) {
