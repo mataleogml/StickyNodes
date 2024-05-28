@@ -11,7 +11,7 @@ OnDeviceChange(wParam, lParam) {
     if (wParam = 0x8000) {
         DriveLetter := GetDriveLetterFromGUID()
         if (DriveLetter) {
-            ;MsgBox, Press PageDown to import images from %DriveLetter%
+            
         }
     }
     return true
@@ -38,21 +38,21 @@ ImportImages(DriveLetter) {
     {
         FileCopy, %A_LoopFileFullPath%, %TargetFolder%
     }
-    ;MsgBox, Images have been imported to %TargetFolder%
+    
 }
 
 OnMessage(0x219, "OnDeviceChange")
 
-; Define a hotkey for PageDown to trigger the image import
+; Define a hotkey for . to launch Lightroom and trigger the image import
 .::
 if (DriveLetter) {
     Run, "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe Lightroom Classic.lnk"
     ImportImages(DriveLetter)
     DriveLetter := "" ; Reset drive letter after import
 } else {
-    ;MsgBox, No removable drive detected. Please plug in a device first.
+    
 }
 return
 
-MsgBox, Script is running. Plug in your camera and press PageDown to import images.
+MsgBox, Script is running. Plug in your camera and press . to launch Lightroom and import images.
 return
