@@ -1,4 +1,4 @@
-# Sticky Nodes Photo Importer Workflow
+# Photo Importer Workflow for Sticky Nodes
 
 This AutoHotkey (AHK) script automates the process of importing images from a USB-connected camera, and importing them into Adobe Lightroom.
 
